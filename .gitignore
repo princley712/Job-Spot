@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Environment variables (CRITICAL: Never commit these)
+.env
+.env.local
+
+# Database
+*.sqlite
+*.db
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.local-browsers
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
