@@ -24,8 +24,11 @@ class IndeedScraper(BaseScraper):
     async def _extract_listings(self, page: Page, url: str) -> list[ScrapedJob]:
         results: list[ScrapedJob] = []
 
-        # Wait for result cards to render
-        await page.wait_for_selector("div.job_seen_beacon", timeout=10_000).catch(lambda _: None)
+        # Wait for result cards to render (ignore timeout)
+        try:
+            await page.wait_for_selector("div.job_seen_beacon", timeout=10_000)
+        except Exception:
+            pass
 
         cards = await page.query_selector_all("div.job_seen_beacon")
         if not cards:

@@ -1,8 +1,13 @@
-# app/workers/celery_app.py
 from celery import Celery
 from celery.schedules import crontab
+from app.config import get_settings
 
-celery_app = Celery("jobtracker", broker="redis://redis:6379/0", backend="redis://redis:6379/1")
+settings = get_settings()
+celery_app = Celery(
+    "jobtracker", 
+    broker=settings.CELERY_BROKER_URL, 
+    backend=settings.CELERY_RESULT_BACKEND
+)
 
 # ── Auto-discover tasks from all worker modules ──────────────
 celery_app.autodiscover_tasks(["app.workers.scraper_tasks", "app.workers.matcher_tasks", "app.workers.janitor"])

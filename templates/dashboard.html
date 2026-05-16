@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Job Aggregator Dashboard — Track your matched jobs, applications, and interviews">
+    <title>Job Aggregator — Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <header class="header">
+        <div class="header-left">
+            <h1>Job Aggregator</h1>
+            <p>Your recommended positions, ranked by match score</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-pill">
+                <span>Pending</span>
+                <span class="count" id="stat-pending">–</span>
+            </div>
+            <div class="stat-pill">
+                <span>Applied</span>
+                <span class="count" id="stat-applied">–</span>
+            </div>
+            <div class="stat-pill">
+                <span>Interviewing</span>
+                <span class="count" id="stat-interviewing">–</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Filter Bar ─────────────────────────────────── -->
+    <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="pending">⏳ Pending</button>
+        <button class="filter-btn" data-filter="applied">✅ Applied</button>
+        <button class="filter-btn" data-filter="interviewing">💬 Interviewing</button>
+        <button class="filter-btn" data-filter="offer">🎉 Offers</button>
+        <button class="filter-btn" data-filter="all">All</button>
+    </div>
+
+    <!-- ── Job Cards ──────────────────────────────────── -->
+    <div class="jobs-grid" id="jobs-grid">
+        <!-- Loading skeletons -->
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+    </div>
+
+</div>
+
+<!-- ── "Did You Apply?" Modal ─────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-icon">🔗</div>
+        <h2 id="modal-title">Welcome back!</h2>
+        <p class="modal-subtitle">
+            Did you apply to <span class="modal-job-name" id="modal-job-name">—</span>?
+        </p>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-apply" id="modal-btn-applied">
+                ✅&nbsp; Yes, I Applied
+            </button>
+            <button class="modal-btn modal-btn-later" id="modal-btn-later">
+                ⏳&nbsp; Not Yet — Keep in List
+            </button>
+            <button class="modal-btn modal-btn-skip" id="modal-btn-skip">
+                ✕&nbsp; Not Interested — Remove
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ── Toast Container ────────────────────────────────── -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -22,7 +22,10 @@ class LeverScraper(BaseScraper):
     async def _extract_listings(self, page: Page, url: str) -> list[ScrapedJob]:
         results: list[ScrapedJob] = []
 
-        await page.wait_for_selector("div.posting", timeout=10_000).catch(lambda _: None)
+        try:
+            await page.wait_for_selector("div.posting", timeout=10_000)
+        except Exception:
+            pass
 
         postings = await page.query_selector_all("div.posting")
         logger.info("[lever] Found %d postings", len(postings))

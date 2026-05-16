@@ -28,3 +28,11 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Uploads (user resume files)
+uploads/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/

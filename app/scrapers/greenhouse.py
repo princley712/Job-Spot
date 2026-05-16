@@ -24,7 +24,10 @@ class GreenhouseScraper(BaseScraper):
     async def _extract_listings(self, page: Page, url: str) -> list[ScrapedJob]:
         results: list[ScrapedJob] = []
 
-        await page.wait_for_selector("section.level-0", timeout=10_000).catch(lambda _: None)
+        try:
+            await page.wait_for_selector("section.level-0", timeout=10_000)
+        except Exception:
+            pass
 
         # Greenhouse boards group openings by department
         rows = await page.query_selector_all("div.opening")
